@@ -107,3 +107,56 @@ fn execute_operation(operator: &str, num_a: u32, num_b: u32) -> u32 {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_adicao() {
+        let resultado = execute_operation("+", 5, 3);
+        assert_eq!(resultado, 8);
+    }
+
+    #[test]
+    fn test_subtracao() {
+        let resultado = execute_operation("-", 10, 4);
+        assert_eq!(resultado, 6);
+    }
+
+    #[test]
+    fn test_multiplicacao() {
+        let resultado = execute_operation("*", 7, 6);
+        assert_eq!(resultado, 42);
+    }
+
+    #[test]
+    fn test_divisao() {
+        let resultado = execute_operation("/", 20, 4);
+        assert_eq!(resultado, 5);
+    }
+
+    #[test]
+    fn test_divisao_por_zero() {
+        let resultado = execute_operation("/", 10, 0);
+        assert_eq!(resultado, 0); // Deve retornar 0 quando divide por zero
+    }
+
+    #[test]
+    fn test_operador_invalido() {
+        let resultado = execute_operation("%", 5, 3);
+        assert_eq!(resultado, 0); // Deve retornar 0 para operador inválido
+    }
+
+    #[test]
+    fn test_numeros_grandes() {
+        let resultado = execute_operation("+", 1000, 2000);
+        assert_eq!(resultado, 3000);
+    }
+
+    #[test]
+    fn test_com_zero() {
+        assert_eq!(execute_operation("+", 0, 5), 5);
+        assert_eq!(execute_operation("*", 0, 100), 0);
+    }
+}
